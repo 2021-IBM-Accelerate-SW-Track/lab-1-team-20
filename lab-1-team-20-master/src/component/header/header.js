@@ -1,3 +1,3 @@
 export default function Header(){
-    return <div>To-Do List!!</div>
+    return <div>To-Do List!</div>
 }
