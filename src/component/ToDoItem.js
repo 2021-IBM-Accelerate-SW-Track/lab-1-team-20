@@ -1,12 +1,13 @@
 import React, {useState} from 'react'
 import TodoForm from './TodoForm'
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
-import EditIcon from '@material-ui/icons/Edit';
+import EditIcon from '@material-ui/icons/Edit'
 
 function Todo({todos, completeTodo, removeTodo, editTodo}) {
     const [edit, setEdit] = useState({
         id:null,
-        value:''
+        value:'',
+        date: '',
     });
 
     const submitEdit = value => {
@@ -24,7 +25,8 @@ function Todo({todos, completeTodo, removeTodo, editTodo}) {
     return todos.map((todo, index) => (
         <div className={todo.isComplete ? 'todo-row complete' : 'todo-row'} key={index}>
             <div key={todo.id} onClick={() => completeTodo(todo.id)}>
-                {todo.text}
+                <h3>{todo.text}</h3>
+                <p>{todo.date}</p>
             </div>
             <div className='icons'>
                 <HighlightOffIcon 

@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import TodoForm from './TodoForm'
-import Todo from './Todo'
+import Todo from './ToDoItem'
+
 
 function TodoList() {
 
@@ -9,8 +10,17 @@ function TodoList() {
     const addTodo = todo => {
         /* makes sure user inputs text */
         if(!todo.text) {
+            alert('Please enter a task')
             return;
         } 
+        for(var i = 0; i < todos.length; i++){
+            var text1 = todos[i].value
+            var text2 = todo.value
+            if(text1 === text2){
+                alert('Duplicate Item Detected. Try again')
+                return
+            }
+        }
 
         const newTodos= [todo, ...todos];
         setTodos(newTodos);
