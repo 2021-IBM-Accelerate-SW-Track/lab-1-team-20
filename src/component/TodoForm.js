@@ -3,10 +3,12 @@ import React , {useState} from 'react'
 function TodoForm(props) {
     const[value, setValue] = useState('');
     const[date, setDate] = useState('');
+    const[completed, setCompleted] = useState(false);
     /* allow user to type in box */
-    /**const handleChange = (e) => {
+    const handleChange = (e) => {
         setValue(e.currentTarget.value);
-        setDate(e.currentTarget.date);*/
+        setDate(e.currentTarget.date);
+    }
     
     const handleSubmit = e => {
         /* this prevents the page from refreshing every time the button is pressed */
@@ -18,17 +20,18 @@ function TodoForm(props) {
             text:value
         })
 
-        setValue(e.currentTarget.value);
-        setDate(e.currentTarget.date)     
+        setValue('');
+        setDate('')     
     };
 
 
     return (
         <form className="todo-form" onSubmit={handleSubmit}>
             <div>
-                <label>Task</label>
+                <label style={{color: 'white'}}>Task</label>
                 <input 
                     type="text" 
+                    autoComplete='off'
                     placeholder="Enter task description" 
                     value={value} 
                     name='text' 
@@ -37,7 +40,7 @@ function TodoForm(props) {
                 />
             </div>
             <div>
-                <label>Date & Time</label>
+                <label style={{color: 'white'}}>Date & Time</label>
                 <input
                     type = 'text'
                     placeholder = 'Enter a date'

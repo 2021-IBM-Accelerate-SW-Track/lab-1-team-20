@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import TodoForm from './TodoForm'
-import Todo from './ToDoItem'
+import TodoItem from './TodoItem'
 
 
 function TodoList() {
@@ -14,8 +14,8 @@ function TodoList() {
             return;
         } 
         for(var i = 0; i < todos.length; i++){
-            var text1 = todos[i].value
-            var text2 = todo.value
+            var text1 = todos[i].text
+            var text2 = todo.text
             if(text1 === text2){
                 alert('Duplicate Item Detected. Try again')
                 return
@@ -54,9 +54,21 @@ function TodoList() {
     return (
         <div>
             <TodoForm onSubmit={addTodo}/>
-            <Todo todos={todos} completeTodo={completeTodo} removeTodo={removeTodo} editTodo={editTodo}/>
+            <TodoItem todos={todos} completeTodo={completeTodo} removeTodo={removeTodo} editTodo={editTodo}/>
         </div>
     )
+    /**return(
+        <>
+            <TodoForm onSubmit={addTodo}/>
+            {todos.map((todo) => (
+                <TodoItem 
+                    key ={todo.id} task={todo} 
+                    removeTodo = {removeTodo} 
+                    editTodo = {editTodo}
+                />
+            ))}  
+        </>
+    )*/
 }
 
 export default TodoList

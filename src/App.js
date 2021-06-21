@@ -1,6 +1,6 @@
 import Header from "./component/header"
 import './App.css';
-import ToDoList from "./component/ToDoList";
+import TodoList from "./component/TodoList";
 
 
 
@@ -9,7 +9,7 @@ function App() {
   return (
     <div className="App">
     <Header/>
-    <ToDoList 
+    <TodoList 
     />
     </div>
   );

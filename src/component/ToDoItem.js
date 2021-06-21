@@ -2,19 +2,24 @@ import React, {useState} from 'react'
 import TodoForm from './TodoForm'
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import EditIcon from '@material-ui/icons/Edit'
+import { CheckBox } from '@material-ui/icons';
 
-function Todo({todos, completeTodo, removeTodo, editTodo}) {
+
+function Todo({todos, completeTodo, removeTodo, editTodo, setCompleted}) {
     const [edit, setEdit] = useState({
         id:null,
         value:'',
         date: '',
+        //completed: false
     });
 
-    const submitEdit = value => {
-        editTodo(edit.id, value);
+    const submitEdit = (props) => {
+        editTodo(edit.id, props);
         setEdit({
             id:null,
-            value: ''
+            value: '',
+            date: '',
+            //completed: false
         });
     };
 
@@ -25,10 +30,13 @@ function Todo({todos, completeTodo, removeTodo, editTodo}) {
     return todos.map((todo, index) => (
         <div className={todo.isComplete ? 'todo-row complete' : 'todo-row'} key={index}>
             <div key={todo.id} onClick={() => completeTodo(todo.id)}>
-                <h3>{todo.text}</h3>
+                <h3 style={{color: 'white'}}>
+                    <CheckBox />
+                    {todo.text}
+                </h3>
                 <p>{todo.date}</p>
             </div>
-            <div className='icons'>
+            <div className='icons' style = {{color: 'white'}}>
                 <HighlightOffIcon 
                 onClick={() => removeTodo(todo.id)}
                 className='delete-icon'
