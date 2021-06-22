@@ -1,7 +1,7 @@
-import React, {useState} from 'react'
-import TodoForm from './TodoForm'
+import React, {useState} from 'react';
+import TodoForm from './TodoForm';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
-import EditIcon from '@material-ui/icons/Edit'
+import EditIcon from '@material-ui/icons/Edit';
 import { CheckBox } from '@material-ui/icons';
 
 
@@ -10,7 +10,7 @@ function Todo({todos, completeTodo, removeTodo, editTodo, setCompleted}) {
         id:null,
         value:'',
         date: '',
-        //completed: false
+        isComplete: false
     });
 
     const submitEdit = (props) => {
@@ -19,14 +19,14 @@ function Todo({todos, completeTodo, removeTodo, editTodo, setCompleted}) {
             id:null,
             value: '',
             date: '',
-            //completed: false
+            isComplete: false
         });
     };
 
     if (edit.id) {
         return <TodoForm edit={edit} onSubmit={submitEdit} />
     }
-
+    /* The return function formats what each todo item will look like once it is submitted */
     return todos.map((todo, index) => (
         <div className={todo.isComplete ? 'todo-row complete' : 'todo-row'} key={index}>
             <div key={todo.id} onClick={() => completeTodo(todo.id)}>
@@ -34,7 +34,9 @@ function Todo({todos, completeTodo, removeTodo, editTodo, setCompleted}) {
                     <CheckBox />
                     {todo.text}
                 </h3>
-                <p>{todo.date}</p>
+                <p style={{color: 'white'}}>
+                    {todo.date}
+                </p>
             </div>
             <div className='icons' style = {{color: 'white'}}>
                 <HighlightOffIcon 
